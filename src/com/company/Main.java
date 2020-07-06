@@ -9,7 +9,7 @@ public class Main {
         return new BigInteger(number, sBase).toString(dBase);
     }
 
-    public static void stringBaseCheck(String number,
+    public static Boolean stringBaseCheck(String number,
                                        int sBase, int dBase) {
         boolean isProper = true;
         char[] chars = number.toCharArray();
@@ -28,9 +28,7 @@ public class Main {
                 }
             }
         }
-        if (isProper)
-            System.out.println("Result "+baseConversion(number, sBase, dBase));
-        else System.out.println("Not proper number");
+        return isProper;
     }
 
 
@@ -66,13 +64,14 @@ public class Main {
                 }
             while (dBase > 36 || dBase < 2);
             try {
-                stringBaseCheck(s, sBase, dBase);
+                if(stringBaseCheck(s, sBase, dBase))
+                    System.out.println("Result "+baseConversion(s, sBase, dBase));
+                else System.out.println("Not proper number");
             } catch (Error error) {
                 System.out.println(error);
             }
             System.out.println("Press y or Y to continue: ");
             awnser = in.next();
-//            in.close();
         } while (awnser.equals("y")||awnser.equals("Y"));
     }
 }
